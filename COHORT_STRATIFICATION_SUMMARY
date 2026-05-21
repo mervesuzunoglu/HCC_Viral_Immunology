@@ -1,0 +1,10 @@
+=== COHORT STRATIFICATION SUMMARY ===
+Operational_Cohort
+MASH_Cryptogenic_HCC    160
+Alcohol_HCC              81
+Pure_HBV_HCC             80
+Pure_HCV_HCC             56
+Name: count, dtype: int64
+
+Master tracker safely created and cached at:
+data_acquisition_output/stratified_hcc_cohort.csv
