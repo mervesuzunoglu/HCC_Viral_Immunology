@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+"""
+TCGA-LIHC Case-Specific Somatic Mutation Coordinate Extraction Pipeline
+Author: [Merve S Uzunoglu/GitHub mervesuzunoglu]
+Description: Programmatically mines the live NCI GDC Simple Somatic Mutation Occurrence index,
+             and maps verified missense variants directly to clinical patient barcodes.
+"""
+
+import os
+import json
+import requests
+import pandas as pd
+
+def harvest_mutation_coordinates(output_directory):
+    """
+    Connects to the GDC API occurrence endpoint, extracts active genomic change vectors
+    directly alongside case barcodes, and constructs a reproducible tracking matrix.
+    """
+    os.makedirs(output_directory, exist_ok=True)
+    filtered_csv_path = os.path.join(output_directory, "filtered_missense_mutations.csv")
+
+    ssm_occurrence_url = "https://api.gdc.cancer.gov/ssm_occurrences"
+
+    search_filters = {
+        "op": "and",
+        "content": [
+            {"op": "in", "content": {"field": "cases.project.project_id", "value": ["TCGA-LIHC"]}},
+            {"op": "in", "content": {"field": "ssm.consequence.transcript.consequence_type", "value": ["missense_variant"]}}
+        ]
+    }
+
+    query_parameters = {
+        "filters": json.dumps(search_filters),
+        "expand": "case,ssm",
+        "format": "JSON",
+        "size": "5000"
+    }
+
+    print("Initiating live stream transmission from GDC Occurrence Index...")
+    response = requests.post(ssm_occurrence_url, json=query_parameters)
+    
+    if response.status_code != 200:
+        raise ConnectionError(f"Database query failed. Server returned status code: {response.status_code}")
+
+    raw_records = response.json().get("data", {}).get("hits", [])
+    print(f"Data packets unpacked. Processing {len(raw_records)} occurrence structures...")
+    
+    flattened_dataset = []
+    
+    for record in raw_records:
+        case_node = record.get("case", {})
+        patient_barcode = case_node.get("submitter_id")
+        
+        ssm_node = record.get("ssm", {})
+        dna_mutation = ssm_node.get("genomic_dna_change")
+        
+        if patient_barcode and dna_mutation:
+            flattened_dataset.append({
+                "patient_barcode": str(patient_barcode).strip().upper(),
+                "Genomic_DNA_Change": str(dna_mutation).strip(),
+                "Variant_Classification": "Missense_Mutation",
+                "Occurrence_ID": record.get("ssm_occurrence_id"),
+                "SSM_Core_ID": ssm_node.get("ssm_id")
+            })
+
+    output_df = pd.DataFrame(flattened_dataset)
+    
+    if not output_df.empty:
+        output_df.drop_duplicates(subset=['patient_barcode', 'Genomic_DNA_Change'], inplace=True)
+        output_df.to_csv(filtered_csv_path, index=False)
+        print(f"Genomic occurrence mapping complete. File saved to: {filtered_csv_path}")
+    else:
+        print("Warning: Parsed dataset generated an empty matrix.")
+        
+    return output_df
+
+if __name__ == "__main__":
+    harvest_mutation_coordinates(output_directory="data_mutation_output")
