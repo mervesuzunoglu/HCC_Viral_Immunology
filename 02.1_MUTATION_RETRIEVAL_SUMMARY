@@ -1,0 +1,8 @@
+Streaming live patient variant instances from the GDC Occurrence Index...
+Handshake successful! Retrieved 5000 variant occurrences. Building matrix...
+
+=== SUCCESS: MUTATION RETRIEVAL SUMMARY ===
+Total Patient Somatic Mutations Mapped: 5000
+Unique Genomic Alterations Isolated: 4991
+Genomic variant registry securely locked at:
+/content/drive/MyDrive/HCC_Viral_Immunology_Study/Step2_Host_Neoantigens/filtered_missense_mutations.csv
