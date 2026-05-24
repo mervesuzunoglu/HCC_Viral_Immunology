@@ -1,0 +1,27 @@
+=== INITIATING GDC NATIVE CONSEQUENCE MAPPING ===
+Loaded 5000 rows. Mapping 4991 unique Core IDs directly to the GDC server...
+Processed block [0 to 250]. Peptides compiled: 249 | Proteins cached: 263
+Processed block [250 to 500]. Peptides compiled: 499 | Proteins cached: 518
+Processed block [500 to 750]. Peptides compiled: 747 | Proteins cached: 765
+Processed block [750 to 1000]. Peptides compiled: 996 | Proteins cached: 1018
+Processed block [1000 to 1250]. Peptides compiled: 1244 | Proteins cached: 1256
+Processed block [1250 to 1500]. Peptides compiled: 1493 | Proteins cached: 1495
+Processed block [1500 to 1750]. Peptides compiled: 1742 | Proteins cached: 1727
+Processed block [1750 to 2000]. Peptides compiled: 1992 | Proteins cached: 1962
+Processed block [2000 to 2250]. Peptides compiled: 2242 | Proteins cached: 2190
+Processed block [2250 to 2500]. Peptides compiled: 2492 | Proteins cached: 2423
+Processed block [2500 to 2750]. Peptides compiled: 2742 | Proteins cached: 2645
+Processed block [2750 to 3000]. Peptides compiled: 2992 | Proteins cached: 2859
+Processed block [3000 to 3250]. Peptides compiled: 3242 | Proteins cached: 3087
+Processed block [3250 to 3500]. Peptides compiled: 3491 | Proteins cached: 3304
+Processed block [3500 to 3750]. Peptides compiled: 3740 | Proteins cached: 3524
+Processed block [3750 to 4000]. Peptides compiled: 3988 | Proteins cached: 3735
+Processed block [4000 to 4250]. Peptides compiled: 4236 | Proteins cached: 3948
+Processed block [4250 to 4500]. Peptides compiled: 4486 | Proteins cached: 4153
+Processed block [4500 to 4750]. Peptides compiled: 4735 | Proteins cached: 4359
+Processed block [4750 to 4991]. Peptides compiled: 4975 | Proteins cached: 4564
+
+=== SUCCESS: STEP 3 COMPILATION COMPLETE ===
+Total Patient-Linked Flanking Sequences Locked: 4975
+Flanking peptide matrix permanently archived at:
+/content/drive/MyDrive/HCC_Viral_Immunology_Study/Step3_Peptide_Construction/constructed_flanking_peptides.csv
