@@ -1,0 +1,13 @@
+=== RUNNING COMBINED EPITOPE TILING & CHUNKING ENGINE ===
+-> Successfully loaded 4975 flanking proteome records from Step 3.
+Executing sliding window tiling algorithm across patient targets...
+
+[Matrix Totals] Unique MHC-I Peptides: 184,315 | Unique MHC-II Peptides: 144,454
+
+Archiving raw terminal text inputs to permanent cloud drive storage...
+-> Split Class_I into 37 optimized text batches.
+-> Split Class_II into 29 optimized text batches.
+
+=== SUCCESS: STEP 4 COMPLETE ===
+Data chunks are fully compiled and written to your Google Drive folder at:
+--> /content/drive/MyDrive/HCC_Viral_Immunology_Study/Step4_Epitope_Tiling
